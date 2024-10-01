@@ -1,0 +1,10 @@
+Protocol Description:
+
+Communications between server and client:
+    - Client sends a message requesting  a file based on inputted command line arguments.
+        - Message sent as single text field (EX: 'file.txt').
+    - Server responds with the size of the file + 1 bytes or 0 if the file does not exist as well as the total successful requests and the request number
+        - Message is sent as text delimited by ',' characters (EX: '1000,12,8').
+    - Client waits to receive file of server reported size.
+        - Uses the sendall() function which loops send calls until the whole file is sent, sent as a binary stream.
+    - Upon completion of transfer the socket is shutdown.
